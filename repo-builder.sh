@@ -19,23 +19,24 @@ LANGUAGE=$2
 mkdir "$REPO_NAME"
 cd "$REPO_NAME" || exit
 
+# Creates a new repository on GitHub using the GitHub CLI (gh) and initializes a local Git repository.
+gh repo create "$REPO_NAME" --public --source=. --remote=origin --push
+
 # Checks the value of the LANGUAGE variable and creates a basic project structure based on the specified programming language.
 case "$LANGUAGE" in
-  laravel)
-    echo "Creating a Python project structure..."
-    mkdir src tests
-    touch src/__init__.py
-    touch tests/__init__.py
-    echo "print('Hello, World!')" > src/main.py
-    ;;
+    laravel)
+        echo "Creating a Python project structure..."
+        mkdir src tests
+        touch src/__init__.py
+        touch tests/__init__.py
+        echo "print('Hello, World!')" > src/main.py
+        ;;
     react)
-    echo "Creating a React project..."
-    react&node)
-    ;;
+        echo "Creating a React project..."
+        react&node)
+        ;;
     *)
-    next)
-    ;;
-    echo "Unsupported language: $LANGUAGE"
-    exit 1
-    ;;
+        echo "Unsupported language: $LANGUAGE"
+        exit 1
+        ;;
 esac
