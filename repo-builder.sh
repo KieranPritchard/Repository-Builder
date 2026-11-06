@@ -17,7 +17,7 @@ LANGUAGE=$2
 
 # Creates a new directory with the name of the repository and navigates into it.
 mkdir "$REPO_NAME"
-cd "$REPO_NAME" || exit
+cd "$REPO_NAME"
 
 # Creates a new repository on GitHub using the GitHub CLI (gh) and initializes a local Git repository.
 gh repo create "$REPO_NAME" --public --source=. --remote=origin --push
@@ -25,15 +25,27 @@ gh repo create "$REPO_NAME" --public --source=. --remote=origin --push
 # Checks the value of the LANGUAGE variable and creates a basic project structure based on the specified programming language.
 case "$LANGUAGE" in
     laravel)
-        echo "Creating a Python project structure..."
-        mkdir src tests
-        touch src/__init__.py
-        touch tests/__init__.py
-        echo "print('Hello, World!')" > src/main.py
+        echo "Creating a laravel project structure..."
+        composer create-project laravel/laravel api
+        cd api
+        php artisan install:api      # installs Sanctum + routes/api.php
+        php artisan migrate
+        cd ..
+        npm create vite@latest web -- --template react-ts
+        cd web
+        npm install axios react-router-dom
         ;;
     react)
         echo "Creating a React project..."
-        react&node)
+        npm create vite@latest web -- --template react-ts
+        cd web
+        npm install axios react-router-dom
+        cd ..
+        mkdir api
+        cd api
+        echo "Creating a Node.js project..."
+        npm init -y
+        npm install express cors
         ;;
     *)
         echo "Unsupported language: $LANGUAGE"
