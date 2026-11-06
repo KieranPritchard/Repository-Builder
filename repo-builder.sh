@@ -47,6 +47,13 @@ case "$LANGUAGE" in
         npm init -y
         npm install express cors
         ;;
+    go)
+        echo "Creating a Go project..."
+        mkdir "$REPO_NAME"
+        cd "$REPO_NAME"
+        go mod init "$REPO_NAME"
+        touch main.go
+        ;;
     *)
         echo "Unsupported language: $LANGUAGE"
         exit 1
