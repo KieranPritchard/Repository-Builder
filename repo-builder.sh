@@ -31,9 +31,9 @@ case "$LANGUAGE" in
         php artisan install:api      # installs Sanctum + routes/api.php
         php artisan migrate
         cd ..
-        npm create vite@latest web -- --template react-ts
+        npx create-next-app@latest web --typescript --tailwind --eslint --app --src-dir --import-alias "@/*" --use-npm --yes
         cd web
-        npm install axios react-router-dom
+        npm install axios
         ;;
     react)
         echo "Creating a React project..."
