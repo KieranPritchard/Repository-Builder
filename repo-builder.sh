@@ -54,6 +54,14 @@ case "$LANGUAGE" in
         go mod init "$REPO_NAME"
         touch main.go
         ;;
+    python)
+        echo "Creating a Python project..."
+        mkdir "$REPO_NAME"
+        cd "$REPO_NAME"
+        python3 -m venv venv
+        source venv/bin/activate
+        touch app.py
+        ;;
     *)
         echo "Unsupported language: $LANGUAGE"
         exit 1
