@@ -48,17 +48,16 @@ stack, so the GitHub CLI must be ready before starting.
 
 ## Installing the command
 
-`migrate.sh` makes `repo-builder.sh` executable and moves it to
+`migrate.sh` makes `repo-builder.sh` executable and copies it to
 `/usr/local/bin/` using `sudo`, allowing it to be run as `repo-builder.sh`
-outside the project directory:
+outside the project directory while keeping the original in place:
 
 ```bash
 ./migrate.sh
 repo-builder.sh my-app react
 ```
 
-Run `migrate.sh` from the directory containing `repo-builder.sh`. It moves the
-script rather than copying it, so it will no longer remain in that directory.
+Run `migrate.sh` from the directory containing `repo-builder.sh`.
 
 ## Notes
 
